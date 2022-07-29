@@ -1,17 +1,23 @@
-import { MaintenanceApi } from 'src/interfaces/maintenance-api.interface';
+import { CarSchedule } from 'src/interfaces/car-schedule.interface';
+import { Car } from 'src/interfaces/car.interface';
+import { MaintenanceData } from 'src/interfaces/maintenance-data.interface';
 import { Maintenance } from 'src/interfaces/maintenance.interface';
 import { Part } from 'src/interfaces/part.interface';
 import { Repair } from 'src/interfaces/repair.interface';
 
 export async function map(
-  maintenanceApi: MaintenanceApi,
-): Promise<Maintenance[]> {
-  let repair: Repair;
-  let maintenanceItems: Maintenance[] = [];
-  let parts: Part[];
+  car: Car,
+  maintenanceData: MaintenanceData,
+): Promise<CarSchedule> {
+  const carSchedule: CarSchedule = {
+    car: car,
+    maintenances: [],
+  };
 
-  maintenanceItems = maintenanceApi.data.map((data) => {
-    const repairItem: Repair = {
+  maintenanceData.data.forEach((data) => {
+    const parts: Part[] = [];
+
+    const repair: Repair = {
       difficulty: data.repair.repair_difficulty,
       hours: data.repair.repair_hours,
       laborRatePerHour: data.repair.labor_rate_per_hour,
@@ -19,19 +25,30 @@ export async function map(
       laborCost: data.repair.labor_cost,
       miscCost: data.repair.misc_cost,
       totalCost: data.repair.total_cost,
+    };
+
+    if (data.parts) {
+      data.parts.forEach((partData) => {
+        const part: Part = {
+          description: partData.desc,
+          manufacturer: partData.manufacturer,
+          price: partData.price,
+          quantity: partData.qty,
+        };
+        parts.push(part);
+      });
     }
 
-    const partsItems: Part[] = data.parts.map((part) => {
-      return 
-    })
-    
-    const maintenanceItem: Maintenance = {
+    const maintenance: Maintenance = {
       description: data.desc,
       dueMileage: data.due_mileage,
       isOem: data.is_oem,
-      repair: ,
-      parts: undefined,
+      repair: repair,
+      parts: parts,
     };
+
+    carSchedule.maintenances.push(maintenance);
   });
-  return maintenanceItems;
+
+  return carSchedule;
 }

@@ -1,6 +1,4 @@
-import { AutoMap } from '@automapper/classes';
-
-export interface MaintenanceApi {
+export interface MaintenanceData {
   message: {
     code: number;
     message: string;

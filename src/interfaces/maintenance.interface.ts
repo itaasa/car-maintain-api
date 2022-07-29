@@ -6,5 +6,5 @@ export interface Maintenance {
   dueMileage: number;
   isOem: boolean;
   repair: Repair;
-  parts: Part;
+  parts: Part[];
 }
