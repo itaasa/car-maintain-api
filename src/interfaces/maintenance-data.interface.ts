@@ -13,20 +13,20 @@ export interface MaintenanceData {
       due_mileage: number;
       due_km: number;
       is_oem: boolean;
-      repair: RepairApi;
-      parts: PartsApi[];
+      repair: RepairData;
+      parts: PartsData[];
     },
   ];
 }
 
-export interface PartsApi {
+export interface PartsData {
   desc: string;
   manufacturer: string;
   price: number;
   qty: number;
 }
 
-export interface RepairApi {
+export interface RepairData {
   repair_difficulty: number;
   repair_hours: number;
   labor_rate_per_hour: number;

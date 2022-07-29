@@ -3,7 +3,7 @@ import { AppModule } from './app.module';
 import { CarSchedule } from './interfaces/car-schedule.interface';
 import { Car } from './interfaces/car.interface';
 import { MaintenanceData } from './interfaces/maintenance-data.interface';
-import { map } from './mappings/maintenance-mapper';
+import { mapDataToCarSchedule } from './mappings/maintenance-mapper';
 import * as maintenanceJson from './subaru-brz-maintenance.json';
 
 async function test() {
@@ -20,7 +20,10 @@ async function test() {
     maintenanceJson
   );
 
-  const carSchedule: CarSchedule = await map(subaruBrz, subaruBrzMaintenance);
+  const carSchedule: CarSchedule = await mapDataToCarSchedule(
+    subaruBrz,
+    subaruBrzMaintenance,
+  );
 
   console.log(carSchedule);
 }
