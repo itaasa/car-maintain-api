@@ -3,7 +3,7 @@ import { AppModule } from './app.module';
 import { CarSchedule } from './interfaces/car-schedule.interface';
 import { Car } from './interfaces/car.interface';
 import { MaintenanceData } from './interfaces/maintenance-data.interface';
-import { mapDataToCarSchedule } from './mappings/maintenance-mapper';
+import { mapDataToCarSchedule } from './mappings/car-schedule-mapper';
 import * as maintenanceJson from './subaru-brz-maintenance.json';
 
 async function test() {
