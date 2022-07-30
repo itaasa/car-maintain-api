@@ -27,18 +27,40 @@ fdescribe('CarScheduleMapper', () => {
         expectedCarSchedule.maintenances.length,
       );
 
-      result.maintenances.forEach((maintenanceResult, index) => {
+      result.maintenances.forEach((maintenanceResult, maintenanceIndex) => {
         expect(maintenanceResult.description).toEqual(
-          expectedCarSchedule.maintenances[index].description,
+          expectedCarSchedule.maintenances[maintenanceIndex].description,
         );
 
         expect(maintenanceResult.dueMileage).toEqual(
-          expectedCarSchedule.maintenances[index].dueMileage,
+          expectedCarSchedule.maintenances[maintenanceIndex].dueMileage,
         );
 
         expect(maintenanceResult.isOem).toEqual(
-          expectedCarSchedule.maintenances[index].isOem,
+          expectedCarSchedule.maintenances[maintenanceIndex].isOem,
         );
+
+        maintenanceResult.parts.forEach((partResult, partIndex) => {
+          expect(partResult.description).toEqual(
+            expectedCarSchedule.maintenances[maintenanceIndex].parts[partIndex]
+              .description,
+          );
+
+          expect(partResult.manufacturer).toEqual(
+            expectedCarSchedule.maintenances[maintenanceIndex].parts[partIndex]
+              .manufacturer,
+          );
+
+          expect(partResult.price).toEqual(
+            expectedCarSchedule.maintenances[maintenanceIndex].parts[partIndex]
+              .price,
+          );
+
+          expect(partResult.quantity).toEqual(
+            expectedCarSchedule.maintenances[maintenanceIndex].parts[partIndex]
+              .quantity,
+          );
+        });
       });
     });
   });
