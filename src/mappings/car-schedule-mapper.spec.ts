@@ -8,7 +8,7 @@ import { mockCar, mockCarSchedule } from '../mocks/car-schedule-mocks';
 import { mockMaintenanceData } from '../mocks/maintenance-data-mocks';
 import { mapDataToCarSchedule } from './car-schedule-mapper';
 
-fdescribe('CarScheduleMapper', () => {
+describe('CarScheduleMapper', () => {
   describe('mapDataToCarSchedule', () => {
     it('should map maintenanceData to a carSchedule', async () => {
       const car: Car = mockCar;
