@@ -7,19 +7,19 @@ export interface MaintenanceData {
     endpoint: string;
     counter: number;
   };
-  data: [
-    {
-      desc: string;
-      due_mileage: number;
-      due_km: number;
-      is_oem: boolean;
-      repair: RepairData;
-      parts: PartsData[];
-    },
-  ];
+  data: Data[];
 }
 
-export interface PartsData {
+export interface Data {
+  desc: string;
+  due_mileage: number;
+  due_km: number;
+  is_oem: boolean;
+  repair: RepairData;
+  parts: PartData[];
+}
+
+export interface PartData {
   desc: string;
   manufacturer: string;
   price: number;

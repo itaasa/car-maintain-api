@@ -2,7 +2,7 @@ import { CarSchedule } from 'src/interfaces/car-schedule.interface';
 import { Car } from 'src/interfaces/car.interface';
 import {
   MaintenanceData,
-  PartsData,
+  PartData,
   RepairData,
 } from 'src/interfaces/maintenance-data.interface';
 import { Maintenance } from 'src/interfaces/maintenance.interface';
@@ -47,7 +47,7 @@ function mapRepair(repairData: RepairData): Repair {
   return repair;
 }
 
-function mapParts(partsData: PartsData[]): Part[] {
+function mapParts(partsData: PartData[]): Part[] {
   const parts: Part[] = [];
 
   if (partsData) {
