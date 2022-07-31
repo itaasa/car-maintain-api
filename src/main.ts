@@ -6,9 +6,16 @@ import { MaintenanceData } from './interfaces/maintenance-data.interface';
 import { mapDataToCarSchedule } from './mappings/car-schedule-mapper';
 import * as maintenanceJson from './subaru-brz-maintenance.json';
 
-async function test() {
+start();
+
+async function start() {
   const app = await NestFactory.create(AppModule);
   await app.listen(3000);
+}
+
+async function test() {
+  // const app = await NestFactory.create(AppModule);
+  // await app.listen(3000);
 
   const subaruBrz: Car = {
     make: 'Subaru',
@@ -27,5 +34,3 @@ async function test() {
 
   console.log(carSchedule);
 }
-
-test();
