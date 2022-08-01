@@ -1,0 +1,7 @@
+{
+  "mongoUsername": "",
+  "mongoPassword": "",
+  "mongoClusterUrl": ""
+  "mongoDatabase": "",
+  "mongoCarScheduleCollection": ""
+}
