@@ -1,14 +1,12 @@
 import { Controller, Get, Param } from '@nestjs/common';
 import { CarSchedule } from 'src/interfaces/car-schedule.interface';
 import { Car } from 'src/interfaces/car.interface';
-import { MaintenanceDataMockService } from 'src/maintenance-data-mock/maintenance-data-mock.service';
 import { mapDataToCarSchedule } from 'src/mappings/car-schedule-mapper';
+import { mockMaintenanceData } from 'src/mocks/maintenance-data-mocks';
 
 @Controller('maintenance')
 export class MaintenanceController {
-  public constructor(
-    private maintenanceDataMockService: MaintenanceDataMockService,
-  ) {}
+  public constructor() {}
 
   @Get()
   async getMaintenance(@Param() params): Promise<CarSchedule> {
@@ -18,9 +16,6 @@ export class MaintenanceController {
       year: params.year,
     };
 
-    const maintenanceData =
-      this.maintenanceDataMockService.getMaintenanceData(car);
-
-    return await mapDataToCarSchedule(car, maintenanceData);
+    return await mapDataToCarSchedule(car, mockMaintenanceData);
   }
 }
