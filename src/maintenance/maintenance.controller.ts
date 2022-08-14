@@ -1,8 +1,6 @@
 import { Controller, Get, Param } from '@nestjs/common';
 import { CarSchedule } from 'src/interfaces/car-schedule.interface';
 import { Car } from 'src/interfaces/car.interface';
-import { mapDataToCarSchedule } from 'src/mappings/car-schedule-mapper';
-import { mockMaintenanceData } from 'src/mocks/maintenance-data-mocks';
 
 @Controller('maintenance')
 export class MaintenanceController {
@@ -15,7 +13,6 @@ export class MaintenanceController {
       model: params.model,
       year: params.year,
     };
-
-    return await mapDataToCarSchedule(car, mockMaintenanceData);
+    return null;
   }
 }
