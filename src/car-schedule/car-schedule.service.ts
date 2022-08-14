@@ -24,4 +24,11 @@ export class CarScheduleService {
       throw e;
     }
   }
+
+  async createCarSchedule(carSchedule: CarSchedule) {
+    try {
+    } catch (e) {
+      throw e;
+    }
+  }
 }
