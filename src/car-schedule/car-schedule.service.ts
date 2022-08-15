@@ -3,7 +3,6 @@ import * as config from 'config';
 import { ObjectId } from 'mongodb';
 import { DbConnection } from 'src/db';
 import { CarSchedule } from 'src/interfaces/car-schedule.interface';
-import { Car } from 'src/interfaces/car.interface';
 
 @Injectable()
 export class CarScheduleService {
@@ -15,18 +14,6 @@ export class CarScheduleService {
         .insertOne(carSchedule);
 
       return result.insertedId;
-    } catch (e) {
-      throw e;
-    }
-  }
-
-  async getAllCarSchedules(): Promise<CarSchedule[]> {
-    try {
-      let db = await new DbConnection().get();
-      let results = await db
-        .collection(config.get('mongoCarScheduleCollection'))
-        .find();
-      return results.toArray();
     } catch (e) {
       throw e;
     }
