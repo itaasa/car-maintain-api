@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
 import { CarSchedule } from '../interfaces/car-schedule.interface';
 import { CarScheduleService } from './car-schedule.service';
 
@@ -14,5 +14,10 @@ export class CarScheduleController {
   @Post()
   async create(@Body() carSchedule: CarSchedule) {
     return await this.carScheduleService.createCarSchedule(carSchedule);
+  }
+
+  @Put()
+  async put(@Body() carSchedule: CarSchedule) {
+    return await this.carScheduleService.updateCarSchedule(carSchedule);
   }
 }

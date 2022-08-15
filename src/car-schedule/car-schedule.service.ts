@@ -33,4 +33,19 @@ export class CarScheduleService {
       throw e;
     }
   }
+
+  async updateCarSchedule(carSchedule: CarSchedule): Promise<string> {
+    console.log(carSchedule.id);
+    const idQuery = { _id: new ObjectId(carSchedule.id) };
+    const updateCarScheduleQuery = { $set: carSchedule };
+
+    try {
+      let db = await new DbConnection().get();
+      return await db
+        .collection(config.get('mongoCarScheduleCollection'))
+        .updateOne(idQuery, updateCarScheduleQuery);
+    } catch (e) {
+      throw e;
+    }
+  }
 }
