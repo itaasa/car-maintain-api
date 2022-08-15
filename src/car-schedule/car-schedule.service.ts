@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import * as config from 'config';
+import { ObjectId } from 'mongodb';
 import { DbConnection } from 'src/db';
 import { CarSchedule } from 'src/interfaces/car-schedule.interface';
 import { Car } from 'src/interfaces/car.interface';
@@ -31,17 +32,13 @@ export class CarScheduleService {
     }
   }
 
-  async getCarSchedule(car: Car): Promise<CarSchedule> {
+  async getCarSchedule(id: string): Promise<CarSchedule> {
     try {
       let db = await new DbConnection().get();
       let result = await db
         .collection(config.get('mongoCarScheduleCollection'))
         .findOne({
-          car: {
-            make: car.make,
-            model: car.model,
-            year: car.year,
-          },
+          _id: new ObjectId(id),
         });
 
       return result;
