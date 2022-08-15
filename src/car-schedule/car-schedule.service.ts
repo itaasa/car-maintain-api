@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import * as config from 'config';
 import { ObjectId } from 'mongodb';
-import { DbConnection } from 'src/db';
-import { CarSchedule } from 'src/interfaces/car-schedule.interface';
+import { DbConnection } from '../db';
+import { CarSchedule } from '../interfaces/car-schedule.interface';
 
 @Injectable()
 export class CarScheduleService {
