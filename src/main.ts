@@ -1,9 +1,10 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import { Car } from './interfaces/car.interface';
 import { CarScheduleService } from './car-schedule/car-schedule.service';
+import { CarSchedule } from './interfaces/car-schedule.interface';
+import { Car } from './interfaces/car.interface';
+import { mockCarSchedule } from './mocks/car-schedule-mocks';
 
-start();
 test();
 
 async function start() {
@@ -12,14 +13,8 @@ async function start() {
 }
 
 async function test() {
-  const subaruBrz: Car = {
-    make: 'Subaru',
-    model: 'BRZ',
-    year: 2014,
-  };
-
   const carScheduleService = new CarScheduleService();
 
-  const carSchedule = await carScheduleService.getCarSchedule(subaruBrz);
-  console.log(carSchedule);
+  let id = await carScheduleService.createCarSchedule(mockCarSchedule);
+  console.log(id);
 }
