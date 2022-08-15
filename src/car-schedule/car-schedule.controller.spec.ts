@@ -3,9 +3,8 @@ import { mockCarSchedule } from '../mocks/car-schedule-mocks';
 import { CarScheduleController } from './car-schedule.controller';
 import { CarScheduleService } from './car-schedule.service';
 
-fdescribe('CarScheduleController', () => {
+describe('CarScheduleController', () => {
   let controller: CarScheduleController;
-  let service: CarScheduleService;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
@@ -13,7 +12,6 @@ fdescribe('CarScheduleController', () => {
       providers: [CarScheduleService],
     }).compile();
 
-    service = module.get<CarScheduleService>(CarScheduleService);
     controller = module.get<CarScheduleController>(CarScheduleController);
   });
 
