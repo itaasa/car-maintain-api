@@ -1,5 +1,12 @@
 # Car Schedule API
 
+## Technologies Used
+
+- Nest.js
+- Typescript
+- Node
+- MongoDB
+
 ## Common Issues
 
 ### Database Taking Awhile to Load
