@@ -1,22 +1,31 @@
 import { Injectable } from '@nestjs/common';
 import * as config from 'config';
-import { DbConnection } from 'src/db';
-import { CarSchedule } from 'src/interfaces/car-schedule.interface';
-import { Car } from 'src/interfaces/car.interface';
+import { ObjectId } from 'mongodb';
+import { DbConnection } from '../db';
+import { CarSchedule } from '../interfaces/car-schedule.interface';
 
 @Injectable()
 export class CarScheduleService {
-  async getCarSchedule(car: Car): Promise<CarSchedule> {
+  async createCarSchedule(carSchedule: CarSchedule): Promise<string> {
+    try {
+      let db = await new DbConnection().get();
+      let result = await db
+        .collection(config.get('mongoCarScheduleCollection'))
+        .insertOne(carSchedule);
+
+      return result.insertedId;
+    } catch (e) {
+      throw e;
+    }
+  }
+
+  async getCarSchedule(id: string): Promise<CarSchedule> {
     try {
       let db = await new DbConnection().get();
       let result = await db
         .collection(config.get('mongoCarScheduleCollection'))
         .findOne({
-          car: {
-            make: car.make,
-            model: car.model,
-            year: car.year,
-          },
+          _id: new ObjectId(id),
         });
 
       return result;
@@ -25,8 +34,16 @@ export class CarScheduleService {
     }
   }
 
-  async createCarSchedule(carSchedule: CarSchedule) {
+  async updateCarSchedule(carSchedule: CarSchedule): Promise<string> {
+    console.log(carSchedule.id);
+    const idQuery = { _id: new ObjectId(carSchedule.id) };
+    const updateCarScheduleQuery = { $set: carSchedule };
+
     try {
+      let db = await new DbConnection().get();
+      return await db
+        .collection(config.get('mongoCarScheduleCollection'))
+        .updateOne(idQuery, updateCarScheduleQuery);
     } catch (e) {
       throw e;
     }
