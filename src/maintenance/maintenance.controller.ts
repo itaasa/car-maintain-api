@@ -1,5 +1,5 @@
 import { Body, Controller, Put } from '@nestjs/common';
-import { CarSchedule } from 'src/interfaces/car-schedule.interface';
+import { CarSchedule } from '../interfaces/car-schedule.interface';
 import { MaintenanceService } from './maintenance.service';
 
 @Controller('car-schedule/maintenance')
