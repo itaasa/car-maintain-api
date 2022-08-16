@@ -2,7 +2,7 @@ import { Body, Controller, Put } from '@nestjs/common';
 import { CarSchedule } from 'src/interfaces/car-schedule.interface';
 import { MaintenanceService } from './maintenance.service';
 
-@Controller('maintenance')
+@Controller('car-schedule/maintenance')
 export class MaintenanceController {
   public constructor(private maintenanceService: MaintenanceService) {}
 
