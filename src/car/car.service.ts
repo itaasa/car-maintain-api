@@ -1,15 +1,15 @@
 import { Injectable } from '@nestjs/common';
-import * as config from 'config';
 import { ObjectId } from 'mongodb';
-import { DbConnection } from 'src/db';
+import { DbConnection } from '../db';
+import * as config from 'config';
 import { CarSchedule } from '../interfaces/car-schedule.interface';
 
 @Injectable()
-export class MaintenanceService {
-  async updateMaintenances(carSchedule: CarSchedule): Promise<string> {
+export class CarService {
+  async updateCar(carSchedule: CarSchedule): Promise<string> {
     const findQuery = { _id: new ObjectId(carSchedule._id) };
     const updateQuery = {
-      $set: { maintenances: carSchedule.maintenances },
+      $set: { car: carSchedule.car },
     };
 
     try {
