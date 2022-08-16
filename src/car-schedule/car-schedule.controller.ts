@@ -17,7 +17,7 @@ export class CarScheduleController {
   }
 
   @Put()
-  async put(@Body() carSchedule: CarSchedule) {
+  async update(@Body() carSchedule: CarSchedule) {
     return await this.carScheduleService.updateCarSchedule(carSchedule);
   }
 }
