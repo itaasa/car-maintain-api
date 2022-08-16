@@ -35,8 +35,7 @@ export class CarScheduleService {
   }
 
   async updateCarSchedule(carSchedule: CarSchedule): Promise<string> {
-    console.log(carSchedule.id);
-    const idQuery = { _id: new ObjectId(carSchedule.id) };
+    const idQuery = { _id: new ObjectId(carSchedule._id) };
     const updateCarScheduleQuery = { $set: carSchedule };
 
     try {
